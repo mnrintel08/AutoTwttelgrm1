@@ -1,0 +1,29 @@
+name: prueba
+
+on: workflow_dispatch
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+    timeout-minutes: 999
+
+    steps:
+    - name: Instala Paquetes Necesarios
+      run: |
+        cmd /c pip install telegram-upload
+    - name: Primera Ejecucion
+      run: |
+        cmd /c telegram-upload
+    - name: Descargar Archivos Necesarios
+      run: |
+        Invoke-WebRequest https://drive.google.com/uc?id=$Env:SESSION_DATA -OutFile "C:\Users\administrator\.config\data.zip"
+      env:
+        SESSION_DATA: ${{ secrets.SESSION_DATA_1 }}
+    - name: Descomprimir Datos
+      run: |
+        cd "C:\Users\administrator\.config"
+        Expand-Archive data.zip -DestinationPath "C:\Users\administrator\.config"
+    - name: Segunda Ejecucion
+      run: |
+        cmd /c telegram-upload

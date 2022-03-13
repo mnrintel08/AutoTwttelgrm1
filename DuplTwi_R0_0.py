@@ -5,6 +5,7 @@ import m3u8
 import sys
 import asyncio
 import aiohttp
+import os
 
 
 LINKS_CHNL = sys.argv[1].split(",")

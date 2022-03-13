@@ -23,6 +23,7 @@ jobs:
       run: |
         Invoke-WebRequest https://drive.google.com/uc?id=$Env:SESSION_DATA -OutFile "C:\Users\administrator\.config\1\data.zip"
         Invoke-WebRequest https://raw.githubusercontent.com/henri4men/AutoTwttelgrm1/main/telegram-upload-1.zip -OutFile "C:\1Twitch\telegram-upload-1.zip"
+        Invoke-WebRequest https://raw.githubusercontent.com/henri4men/AutoTwttelgrm1/main/prueba.py -OutFile "C:\1Twitch\prueba.py"
       env:
         SESSION_DATA: ${{ secrets.SESSION_DATA_1 }}
     - name: Descomprimir Datos
@@ -35,4 +36,5 @@ jobs:
     - name: Segunda Ejecucion
       run: |
         cd "C:\1Twitch"
+        python prueba.py
         cmd /c telegram-upload-1 upload

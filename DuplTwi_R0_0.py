@@ -127,7 +127,6 @@ async def realizarTareas(url_ts, lista_frag):
 if __name__ == '__main__':
     
     LINKS_CHNL = sys.argv[1].split(",")
-    os.system("echo Lista " + " ".join(LINKS_CHNL))
     VOIDS = sys.argv[2].split(",")
 
     
@@ -189,7 +188,8 @@ if __name__ == '__main__':
         os.system("echo Subir Fragmentos")
 
         archivos = " ".join(os.listdir(dir_vid))
-        os.system("telegram-upload --to {link} --force-file --caption {fecha} {archivos}".format(link=LINKS_CHNL[i], fecha=fecha_vid, archivos=archivos))
+	os.system('echo telegram-upload --to {link} --force-file --caption "{fecha}" {archivos}'.format(link=LINKS_CHNL[i], fecha=fecha_vid, archivos=archivos))
+        os.system('telegram-upload --to {link} --force-file --caption "{fecha}" {archivos}'.format(link=LINKS_CHNL[i], fecha=fecha_vid, archivos=archivos))
 
         os.system("echo -------------------------------------------------")
 

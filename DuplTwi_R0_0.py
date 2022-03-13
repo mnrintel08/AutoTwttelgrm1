@@ -127,7 +127,7 @@ async def realizarTareas(url_ts, lista_frag):
 if __name__ == '__main__':
     
     LINKS_CHNL = sys.argv[1].split(",")
-    os.system("echo Lista " + LINKS_CHNL)
+    os.system("echo Lista " + " ".join(LINKS_CHNL))
     VOIDS = sys.argv[2].split(",")
 
     

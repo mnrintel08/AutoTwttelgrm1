@@ -188,9 +188,6 @@ if __name__ == '__main__':
         os.system("echo Subir Fragmentos")
 
         lst_arch = '"' + '" "'.join(os.listdir(dir_vid)) + '"'
-        os.system("echo Archivos: " + lst_arch)
-        os.system("echo posicion: " + str(v))
-        os.system("echo link: " + LINKS_CHNL[0])
         os.system("echo telegram-upload --to {link} --force-file --caption {fecha} {archivos}".format(link=LINKS_CHNL[v], fecha=fecha_vid, archivos=lst_arch))
         os.system("telegram-upload --to {link} --force-file --caption {fecha} {archivos}".format(link=LINKS_CHNL[v], fecha=fecha_vid, archivos=lst_arch))
 

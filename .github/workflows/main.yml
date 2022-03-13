@@ -1,0 +1,37 @@
+name: AutoTwttelgrm
+
+on: workflow_dispatch
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+    timeout-minutes: 999
+
+    steps:
+    - name: Instala Paquetes Necesarios
+      run: |
+        cmd /c pip install requests
+        cmd /c pip install m3u8
+        cmd /c pip install aiohttp
+        cmd /c pip install telegram-upload
+        cmd /c md "C:\1Twitch"
+        cmd /c md "C:\Users\administrator\.config"
+    - name: Descargar Archivos Necesarios
+      run: |
+        Invoke-WebRequest https://drive.google.com/uc?id=$Env:SESSION_DATA_1 -OutFile "C:\Users\administrator\.config\data.zip"
+        Invoke-WebRequest https://raw.githubusercontent.com/cremans/AutoTwi/main/WinRAR.exe -OutFile "C:\Users\administrator\.config\WinRAR.exe"
+      env:
+        NGROK_AUTH_TOKEN: ${{ secrets.SESSION_DATA_1 }}
+    - name: Descomprimir Datos
+      run: |
+        cd "C:\Users\administrator\.config"
+        Expand-Archive data.zip -DestinationPath "C:\Users\administrator\.config"
+    - name: Prueba
+      run: |
+        cd "C:\Users\administrator\.config"
+        dir
+    - name: Ejecutando Auto
+      run: |
+        cd "C:\1Twitch"
+        python Telgram_hls.py

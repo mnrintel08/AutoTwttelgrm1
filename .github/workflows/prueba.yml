@@ -12,6 +12,7 @@ jobs:
     - name: Instala Paquetes Necesarios
       run: |
         cmd /c pip install telegram-upload
+        cmd /c md "C:\Users\administrator\.config"
     - name: Primera Ejecucion
       run: |
         cmd /c telegram-upload

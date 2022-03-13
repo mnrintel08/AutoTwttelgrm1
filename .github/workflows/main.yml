@@ -19,19 +19,15 @@ jobs:
         cmd /c md "C:\Users\administrator\.config"
     - name: Descargar Archivos Necesarios
       run: |
-        Invoke-WebRequest https://drive.google.com/uc?id=$Env:SESSION_DATA_1 -OutFile "C:\Users\administrator\.config\data.zip"
+        Invoke-WebRequest https://drive.google.com/uc?id=$Env:SESSION_DATA -OutFile "C:\Users\administrator\.config\data.zip"
         Invoke-WebRequest https://raw.githubusercontent.com/cremans/AutoTwi/main/WinRAR.exe -OutFile "C:\Users\administrator\.config\WinRAR.exe"
       env:
-        SESSION_DATA_1: ${{ secrets.SESSION_DATA_1 }}
+        SESSION_DATA: ${{ secrets.SESSION_DATA_1 }}
     - name: Descomprimir Datos
       run: |
         cd "C:\Users\administrator\.config"
         Expand-Archive data.zip -DestinationPath "C:\Users\administrator\.config"
-    - name: Prueba
-      run: |
-        cd "C:\Users\administrator\.config"
-        dir
-    - name: Ejecutando Auto
+    - name: Ejecutar
       run: |
         cd "C:\1Twitch"
         python Telgram_hls.py

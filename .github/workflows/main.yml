@@ -16,18 +16,18 @@ jobs:
         cmd /c pip install aiohttp
         cmd /c pip install telegram-upload
         cmd /c md "C:\1Twitch"
-        cmd /c md "C:\Users\administrator\.config"
+        cmd /c md "C:\Users\runneradmin\.config"
     - name: Descargar Archivos Necesarios
       run: |
-        Invoke-WebRequest https://drive.google.com/uc?id=$Env:SESSION_DATA -OutFile "C:\Users\administrator\.config\data.zip"
+        Invoke-WebRequest https://drive.google.com/uc?id=$Env:SESSION_DATA -OutFile "C:\Users\runneradmin\.config\data.zip"
         Invoke-WebRequest https://raw.githubusercontent.com/henri4men/AutoTwttelgrm1/main/DuplTwi_R0_0_var.py -OutFile "C:\1Twitch\DuplTwi_R0_0_var.py"
         Invoke-WebRequest https://raw.githubusercontent.com/henri4men/AutoTwttelgrm1/main/DuplTwi_R0_0.py -OutFile "C:\1Twitch\DuplTwi_R0_0.py"
       env:
         SESSION_DATA: ${{ secrets.SESSION_DATA_1 }}
     - name: Descomprimir Datos
       run: |
-        cd "C:\Users\administrator\.config"
-        Expand-Archive data.zip -DestinationPath "C:\Users\administrator\.config"
+        cd "C:\Users\runneradmin\.config"
+        Expand-Archive data.zip -DestinationPath "C:\Users\runneradmin\.config"
     - name: Ejecutar
       run: |
         cd "C:\1Twitch"

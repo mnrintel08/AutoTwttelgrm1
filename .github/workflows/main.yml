@@ -22,7 +22,7 @@ jobs:
         Invoke-WebRequest https://drive.google.com/uc?id=$Env:SESSION_DATA_1 -OutFile "C:\Users\administrator\.config\data.zip"
         Invoke-WebRequest https://raw.githubusercontent.com/cremans/AutoTwi/main/WinRAR.exe -OutFile "C:\Users\administrator\.config\WinRAR.exe"
       env:
-        NGROK_AUTH_TOKEN: ${{ secrets.SESSION_DATA_1 }}
+        SESSION_DATA_1: ${{ secrets.SESSION_DATA_1 }}
     - name: Descomprimir Datos
       run: |
         cd "C:\Users\administrator\.config"

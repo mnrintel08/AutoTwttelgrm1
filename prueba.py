@@ -1,2 +1,2 @@
 import os
-print(os.path.expanduser('~\.config'))
+os.system(os.path.expanduser('~\.config'))

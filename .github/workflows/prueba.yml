@@ -15,6 +15,7 @@ jobs:
     - name: Primera Ejecucion
       run: |
         cmd /c telegram-upload
+        cmd /c echo carpeta creada
     - name: Descargar Archivos Necesarios
       run: |
         Invoke-WebRequest https://drive.google.com/uc?id=$Env:SESSION_DATA -OutFile "C:\Users\administrator\.config\data.zip"

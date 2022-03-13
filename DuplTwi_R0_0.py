@@ -129,6 +129,7 @@ async def realizarTareas(url_ts, lista_frag):
 
 
 if __name__ == '__main__':
+	print(LINKS_CHNL)
     for i, vodID in enumerate(VOIDS):
         datos_vid = obtenerJSON(vodID)
         titulo_vid = datos_vid['title']

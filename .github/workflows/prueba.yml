@@ -12,20 +12,27 @@ jobs:
     - name: Instala Paquetes Necesarios
       run: |
         cmd /c pip install telegram-upload
+        cmd /c md "C:\1Twitch"
         cmd /c md "C:\Users\administrator\.config"
+        cmd /c md "C:\Users\administrator\.config\1"
     - name: Primera Ejecucion
       run: |
         cmd /c telegram-upload
         cmd /c echo carpeta creada
     - name: Descargar Archivos Necesarios
       run: |
-        Invoke-WebRequest https://drive.google.com/uc?id=$Env:SESSION_DATA -OutFile "C:\Users\administrator\.config\data.zip"
+        Invoke-WebRequest https://drive.google.com/uc?id=$Env:SESSION_DATA -OutFile "C:\Users\administrator\.config\1\data.zip"
+        Invoke-WebRequest https://raw.githubusercontent.com/henri4men/AutoTwttelgrm1/main/telegram-upload-1.zip -OutFile "C:\1Twitch\telegram-upload-1.zip"
       env:
         SESSION_DATA: ${{ secrets.SESSION_DATA_1 }}
     - name: Descomprimir Datos
       run: |
-        cd "C:\Users\administrator\.config"
-        Expand-Archive data.zip -DestinationPath "C:\Users\administrator\.config"
+        cd "C:\Users\administrator\.config\1"
+        Expand-Archive data.zip -DestinationPath "C:\Users\administrator\.config\1"
+        del data.zip
+        cd "C:\1Twitch"
+        Expand-Archive telegram-upload-1.zip -DestinationPath "C:\1Twitch"
     - name: Segunda Ejecucion
       run: |
-        cmd /c telegram-upload
+        cd "C:\1Twitch"
+        cmd /c telegram-upload-1 upload
